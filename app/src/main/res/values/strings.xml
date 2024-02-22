@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">My Wallet</string>
+    <string name="login">Login</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login_button">Login</string>
+    <string name="forgot_password_button">Forgot password?</string>
+    <string name="sign_up_prompt">Don\'t have an account yet? Sign up</string>
+    <string name="default_web_client_id">295547904925-1q369u5uktdllm2jicc5dsnijqets93j.apps.googleusercontent.com</string>
+    <string name="default_notification_channel_id">my_channel_id</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="sign_up_button">Sign Up</string>
+    <string name="or_with">or with</string>
+    <string name="sign_up_google_button">Sign up with Google</string>
+    <string name="previous_password">Previous Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="change_password">Change Password</string>
+</resources>
