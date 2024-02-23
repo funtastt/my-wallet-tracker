@@ -4,10 +4,159 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <View
+        android:id="@+id/bg_home_smooth"
+        android:layout_width="match_parent"
+        android:layout_height="152dp"
+        android:background="@drawable/background_with_shadow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/from"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/bg_home_income"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btn_date_from"
+        style="@style/ChipButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:drawableLeft="@drawable/arrow_down_2"
+        android:gravity="center_horizontal"
+        android:text="February, 28th"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/tv_from"
+        app:layout_constraintEnd_toEndOf="@+id/bg_home_income"
+        app:layout_constraintStart_toEndOf="@id/tv_from"
+        app:layout_constraintTop_toTopOf="@id/tv_from" />
+
+    <TextView
+        android:id="@+id/tv_to"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/to"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@id/bg_home_expense"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Button
+        android:id="@+id/btn_date_to"
+        style="@style/ChipButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:layout_marginStart="4dp"
+        android:drawableLeft="@drawable/arrow_down_2"
+        android:gravity="center_horizontal"
+        android:text="February, 28th"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toBottomOf="@id/tv_to"
+        app:layout_constraintEnd_toEndOf="@+id/bg_home_expense"
+        app:layout_constraintStart_toEndOf="@id/tv_to"
+        app:layout_constraintTop_toTopOf="@id/tv_to" />
+
+    <View
+        android:id="@+id/bg_home_income"
+        android:layout_width="166dp"
+        android:layout_height="80dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/green_rectangle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_from" />
+
+    <View
+        android:id="@+id/bg_home_expense"
+        android:layout_width="166dp"
+        android:layout_height="80dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/red_rectangle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_from" />
+
+    <View
+        android:id="@+id/bg_home_income_circle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/income_white_circle"
+        app:layout_constraintBottom_toBottomOf="@id/bg_home_income"
+        app:layout_constraintStart_toStartOf="@id/bg_home_income"
+        app:layout_constraintTop_toTopOf="@id/bg_home_income" />
+
+    <TextView
+        android:id="@+id/tv_income_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/income"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/bg_home_income_circle"
+        app:layout_constraintTop_toTopOf="@id/bg_home_income_circle" />
+
+
+    <TextView
+        android:id="@+id/tv_income_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="$1000"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/bg_home_income_circle"
+        app:layout_constraintStart_toEndOf="@id/bg_home_income_circle" />
+
+    <TextView
+        android:id="@+id/tv_expense_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="@string/expense"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@id/bg_home_expense_circle"
+        app:layout_constraintTop_toTopOf="@id/bg_home_expense_circle" />
+
+
+    <TextView
+        android:id="@+id/tv_expense_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="$1000"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/bg_home_expense_circle"
+        app:layout_constraintStart_toEndOf="@id/bg_home_expense_circle" />
+
+
+    <View
+        android:id="@+id/bg_home_expense_circle"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/expense_white_circle"
+        app:layout_constraintBottom_toBottomOf="@id/bg_home_expense"
+        app:layout_constraintStart_toStartOf="@id/bg_home_expense"
+        app:layout_constraintTop_toTopOf="@id/bg_home_expense" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="wrebgrb1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

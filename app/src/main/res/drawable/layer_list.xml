@@ -1,0 +1,9 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#fef6e7"/>
+            <padding android:top="20dp" android:bottom="0dp" android:left="0dp" android:right="0dp"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/background_with_shadow"/>
+</layer-list>
