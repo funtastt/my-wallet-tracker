@@ -54,7 +54,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                 }
             }
 
-            tvAlreadyHaveAccount.setOnClickListener {
+            tvAlreadyHaveAnAccount.setOnClickListener {
                 findNavController().navigate(R.id.action_signUpFragment_to_loginFragment)
             }
 
@@ -70,7 +70,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
                 if (task.isSuccessful) {
                     Toast.makeText(requireContext(), "Sign up successful", Toast.LENGTH_SHORT).show()
                     SharedPreferencesManager.saveData("user", email)
-                    findNavController().navigate(R.id.action_signUpFragment_to_homeFragment)
+                    findNavController().navigate(R.id.action_signUpFragment_to_mainFragment)
                 } else {
                     Toast.makeText(requireContext(), "Sign up failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                 }
@@ -127,7 +127,7 @@ class SignUpFragment : Fragment(R.layout.fragment_sign_up) {
         if (user != null) {
             // User is signed in
             Toast.makeText(requireContext(), "Google sign in successful", Toast.LENGTH_SHORT).show()
-            findNavController().navigate(R.id.action_signUpFragment_to_homeFragment)
+            findNavController().navigate(R.id.action_signUpFragment_to_mainFragment)
         } else {
             // User is not signed in
             Toast.makeText(requireContext(), "Google sign in failed", Toast.LENGTH_SHORT).show()

@@ -14,8 +14,8 @@
             android:id="@+id/action_signUpFragment_to_loginFragment"
             app:destination="@id/fragment_login" />
         <action
-            android:id="@+id/action_signUpFragment_to_homeFragment"
-            app:destination="@id/fragment_home" />
+            android:id="@+id/action_signUpFragment_to_mainFragment"
+            app:destination="@id/fragment_main" />
     </fragment>
 
     <fragment
@@ -27,8 +27,8 @@
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/fragment_sign_up" />
         <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/fragment_home" />
+            android:id="@+id/action_loginFragment_to_mainFragment"
+            app:destination="@id/fragment_main" />
         <action
             android:id="@+id/action_loginFragment_to_changePasswordFragment"
             app:destination="@id/fragment_change_password" />
@@ -38,11 +38,11 @@
         android:id="@+id/fragment_change_password"
         android:name="ru.kpfu.itis.android.asadullin.mywallet.ui.fragments.ChangePasswordFragment"
         android:label="ChangePasswordFragment"
-        tools:layout="@layout/fragment_change_password"></fragment>
+        tools:layout="@layout/fragment_change_password" />
 
     <fragment
-        android:id="@+id/fragment_home"
-        android:name="ru.kpfu.itis.android.asadullin.mywallet.ui.fragments.HomeFragment"
-        android:label="ChangePasswordFragment"
-        tools:layout="@layout/fragment_home"></fragment>
+        android:id="@+id/fragment_main"
+        android:name="ru.kpfu.itis.android.asadullin.mywallet.ui.fragments.MainFragment"
+        android:label="mainFragment"
+        tools:layout="@layout/fragment_main"></fragment>
 </navigation>

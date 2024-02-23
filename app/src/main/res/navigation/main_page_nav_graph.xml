@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_page_nav_graph"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="ru.kpfu.itis.android.asadullin.mywallet.ui.fragments.HomeFragment"
+        android:label="homeFragment"
+        tools:layout="@layout/fragment_home">
+    </fragment>
+    <fragment
+        android:id="@+id/transactionFragment"
+        android:name="ru.kpfu.itis.android.asadullin.mywallet.ui.fragments.TransactionsFragment"
+        android:label="transactionsFragment"
+        tools:layout="@layout/fragment_transactions">
+    </fragment>
+    <fragment
+        android:id="@+id/budgetFragment"
+        android:name="ru.kpfu.itis.android.asadullin.mywallet.ui.fragments.BudgetFragment"
+        android:label="budgetFragment"
+        tools:layout="@layout/fragment_budget">
+    </fragment>
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="ru.kpfu.itis.android.asadullin.mywallet.ui.fragments.ProfileFragment"
+        android:label="profileFragment"
+        tools:layout="@layout/fragment_profile">
+    </fragment>
+</navigation>
