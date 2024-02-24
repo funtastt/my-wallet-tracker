@@ -26,4 +26,6 @@
     <string name="expense">Expense</string>
     <string name="from">From:</string>
     <string name="to">To:</string>
+    <string name="recent_transactions">Recent transactions</string>
+    <string name="see_all">See all</string>
 </resources>

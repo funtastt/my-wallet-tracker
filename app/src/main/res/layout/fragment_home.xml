@@ -7,7 +7,7 @@
     <View
         android:id="@+id/bg_home_smooth"
         android:layout_width="match_parent"
-        android:layout_height="152dp"
+        android:layout_height="144dp"
         android:background="@drawable/background_with_shadow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,21 +20,26 @@
         android:layout_marginTop="16dp"
         android:text="@string/from"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@id/bg_home_income"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
-        android:id="@+id/btn_date_from"
-        style="@style/ChipButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_date_from"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:drawableLeft="@drawable/arrow_down_2"
-        android:gravity="center_horizontal"
         android:text="February, 28th"
+        android:textAlignment="center"
         android:textColor="@color/black"
+        android:textSize="13sp"
+        app:chipBackgroundColor="#fef6e7"
+        app:chipIcon="@drawable/arrow_down_2"
+        app:chipIconSize="@null"
+        app:chipStartPadding="8dp"
+        app:chipStrokeColor="#f1f1fa"
+        app:chipStrokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="@id/tv_from"
         app:layout_constraintEnd_toEndOf="@+id/bg_home_income"
         app:layout_constraintStart_toEndOf="@id/tv_from"
@@ -47,21 +52,26 @@
         android:layout_marginTop="16dp"
         android:text="@string/to"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="13sp"
         app:layout_constraintStart_toStartOf="@id/bg_home_expense"
         app:layout_constraintTop_toTopOf="parent" />
 
 
-    <Button
-        android:id="@+id/btn_date_to"
-        style="@style/ChipButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_date_to"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="4dp"
-        android:drawableLeft="@drawable/arrow_down_2"
-        android:gravity="center_horizontal"
         android:text="February, 28th"
+        android:textAlignment="center"
         android:textColor="@color/black"
+        android:textSize="13sp"
+        app:chipBackgroundColor="#fef6e7"
+        app:chipIcon="@drawable/arrow_down_2"
+        app:chipIconSize="@null"
+        app:chipStartPadding="8dp"
+        app:chipStrokeColor="#f1f1fa"
+        app:chipStrokeWidth="2dp"
         app:layout_constraintBottom_toBottomOf="@id/tv_to"
         app:layout_constraintEnd_toEndOf="@+id/bg_home_expense"
         app:layout_constraintStart_toEndOf="@id/tv_to"
@@ -69,7 +79,7 @@
 
     <View
         android:id="@+id/bg_home_income"
-        android:layout_width="166dp"
+        android:layout_width="170dp"
         android:layout_height="80dp"
         android:layout_margin="16dp"
         android:background="@drawable/green_rectangle"
@@ -78,7 +88,7 @@
 
     <View
         android:id="@+id/bg_home_expense"
-        android:layout_width="166dp"
+        android:layout_width="170dp"
         android:layout_height="80dp"
         android:layout_margin="16dp"
         android:background="@drawable/red_rectangle"
@@ -143,7 +153,6 @@
         app:layout_constraintBottom_toBottomOf="@id/bg_home_expense_circle"
         app:layout_constraintStart_toEndOf="@id/bg_home_expense_circle" />
 
-
     <View
         android:id="@+id/bg_home_expense_circle"
         android:layout_width="48dp"
@@ -155,11 +164,26 @@
         app:layout_constraintTop_toTopOf="@id/bg_home_expense" />
 
     <TextView
+        android:id="@+id/tv_recent_transactions"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_margin="16dp"
+        android:text="@string/recent_transactions"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/bg_home_smooth" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip_see_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="#eee5ff"
+        android:text="@string/see_all"
+        android:textColor="#7f3dff"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/bg_home_smooth" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
