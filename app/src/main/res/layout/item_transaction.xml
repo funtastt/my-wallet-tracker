@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:padding="14dp">
+
+    <View
+        android:id="@+id/bg_category"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/rounded_square"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/iv_category_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/shopping_bag"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_category"
+        app:layout_constraintEnd_toEndOf="@+id/bg_category"
+        app:layout_constraintStart_toStartOf="@+id/bg_category"
+        app:layout_constraintTop_toTopOf="@+id/bg_category" />
+
+    <TextView
+        android:id="@+id/tv_transaction_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="6dp"
+        android:text="Shopping"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/bg_category"
+        app:layout_constraintTop_toTopOf="@+id/bg_category" />
+
+    <TextView
+        android:id="@+id/tv_transaction_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginBottom="6dp"
+        android:text="Buy some grocery"
+        android:textColor="#848491"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="@+id/bg_category"
+        app:layout_constraintStart_toEndOf="@+id/bg_category" />
+
+    <TextView
+        android:id="@+id/tv_transaction_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-$120"
+        android:textColor="#fd3c4a"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_transaction_category" />
+
+    <TextView
+        android:id="@+id/tv_transaction_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:00 AM"
+        android:textColor="#848491"
+        android:textSize="13sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_transaction_description" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
