@@ -61,6 +61,13 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.4.0")
 
+    val loggingVersion = "4.12.0"
+    implementation("com.squareup.okhttp3:logging-interceptor:$loggingVersion")
+
+    val retrofitVersion = "2.9.0"
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofitVersion")
+
     implementation("org.mindrot:jbcrypt:0.4")
     implementation("com.github.bumptech.glide:glide:4.15.1")
 

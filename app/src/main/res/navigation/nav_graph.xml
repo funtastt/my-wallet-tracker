@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/fragment_sign_up"
-        android:name="ru.kpfu.itis.android.asadullin.mywallet.ui.fragments.SignUpFragment"
+        android:name="ru.kpfu.itis.android.asadullin.mywallet.presentation.fragments.SignUpFragment"
         android:label="SignUpFragment"
         tools:layout="@layout/fragment_sign_up">
         <action
@@ -20,7 +20,7 @@
 
     <fragment
         android:id="@+id/fragment_login"
-        android:name="ru.kpfu.itis.android.asadullin.mywallet.ui.fragments.LoginFragment"
+        android:name="ru.kpfu.itis.android.asadullin.mywallet.presentation.fragments.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -36,13 +36,13 @@
 
     <fragment
         android:id="@+id/fragment_change_password"
-        android:name="ru.kpfu.itis.android.asadullin.mywallet.ui.fragments.ChangePasswordFragment"
+        android:name="ru.kpfu.itis.android.asadullin.mywallet.presentation.fragments.ChangePasswordFragment"
         android:label="ChangePasswordFragment"
         tools:layout="@layout/fragment_change_password" />
 
     <fragment
         android:id="@+id/fragment_main"
-        android:name="ru.kpfu.itis.android.asadullin.mywallet.ui.fragments.MainFragment"
+        android:name="ru.kpfu.itis.android.asadullin.mywallet.presentation.fragments.MainFragment"
         android:label="mainFragment"
         tools:layout="@layout/fragment_main"></fragment>
 </navigation>
