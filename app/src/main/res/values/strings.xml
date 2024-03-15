@@ -28,4 +28,7 @@
     <string name="to">To:</string>
     <string name="recent_transactions">Recent transactions</string>
     <string name="see_all">See all</string>
+    <string name="continue_text">Continue</string>
+    <string name="description_text">Description</string>
+    <string name="how_much">How much?</string>
 </resources>

@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.FirebaseApp
 import ru.kpfu.itis.android.asadullin.mywallet.R
 import ru.kpfu.itis.android.asadullin.mywallet.data.local.managers.SharedPreferencesManager
+import ru.kpfu.itis.android.asadullin.mywallet.di.ServiceLocator
 
 //import ru.kpfu.itis.android.asadullin.mywallet.di.ServiceLocator
 
@@ -19,6 +20,8 @@ class MainActivity : AppCompatActivity() {
     private fun initInstances() {
         FirebaseApp.initializeApp(this)
         SharedPreferencesManager.init(this)
-//        ServiceLocator.createDatabase(context = this)
+        ServiceLocator.createDatabase(context = this)
+        ServiceLocator.initDataDependencies()
+        ServiceLocator.initDomainDependencies()
     }
 }

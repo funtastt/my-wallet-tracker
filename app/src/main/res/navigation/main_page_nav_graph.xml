@@ -9,6 +9,9 @@
         android:name="ru.kpfu.itis.android.asadullin.mywallet.presentation.fragments.HomeFragment"
         android:label="homeFragment"
         tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_addTransactionFragment"
+            app:destination="@id/addTransactionFragment" />
     </fragment>
     <fragment
         android:id="@+id/transactionFragment"
@@ -27,5 +30,11 @@
         android:name="ru.kpfu.itis.android.asadullin.mywallet.presentation.fragments.ProfileFragment"
         android:label="profileFragment"
         tools:layout="@layout/fragment_profile">
+    </fragment>
+    <fragment
+        android:id="@+id/addTransactionFragment"
+        android:name="ru.kpfu.itis.android.asadullin.mywallet.presentation.fragments.AddTransactionFragment"
+        android:label="addTransactionFragment"
+        tools:layout="@layout/fragment_add_transaction">
     </fragment>
 </navigation>

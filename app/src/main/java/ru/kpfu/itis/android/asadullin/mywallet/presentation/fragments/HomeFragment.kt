@@ -5,16 +5,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import kotlinx.coroutines.launch
 import ru.kpfu.itis.android.asadullin.mywallet.R
-import ru.kpfu.itis.android.asadullin.mywallet.presentation.adapters.CategoryAdapter
 import ru.kpfu.itis.android.asadullin.mywallet.databinding.FragmentHomeBinding
-import ru.kpfu.itis.android.asadullin.mywallet.data.local.repositories.CategoryRepositoryImpl
+import ru.kpfu.itis.android.asadullin.mywallet.di.ServiceLocator
+import ru.kpfu.itis.android.asadullin.mywallet.domain.model.CategoryDomain
+import ru.kpfu.itis.android.asadullin.mywallet.domain.model.enums.TransactionCategoryType
+import ru.kpfu.itis.android.asadullin.mywallet.presentation.adapters.CategoryAdapter
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private var _binding: FragmentHomeBinding? = null
     private val binding: FragmentHomeBinding get() = _binding!!
-    private val categories = CategoryRepositoryImpl.categories
+
+    private val expenseCategories = mutableListOf<CategoryDomain>()
+    private val incomeCategories = mutableListOf<CategoryDomain>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -27,9 +34,33 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun initViews() {
-        with(binding) {
-            rvCategories.layoutManager = GridLayoutManager(activity, 2)
-            rvCategories.adapter = CategoryAdapter(categories)
+        expenseCategories.clear()
+        incomeCategories.clear()
+
+        lifecycleScope.launch {
+            for (category in TransactionCategoryType.values()) {
+                val amount = ServiceLocator.calculateExpensesUseCase.execute(category.toString())
+                val isIncome = TransactionCategoryType.isIncome(category)
+
+                if (isIncome) {
+                    incomeCategories.add(CategoryDomain(amount, category, true))
+                } else {
+                    expenseCategories.add(CategoryDomain(amount, category, false))
+                }
+
+            }
+
+            with(binding) {
+                rvCategories.layoutManager = GridLayoutManager(activity, 2)
+                rvCategories.adapter = CategoryAdapter(expenseCategories)
+
+                bgHomeIncome.setOnClickListener {
+                    rvCategories.adapter = CategoryAdapter(incomeCategories)
+                }
+                bgHomeExpense.setOnClickListener {
+                    rvCategories.adapter = CategoryAdapter(expenseCategories)
+                }
+            }
         }
     }
 
