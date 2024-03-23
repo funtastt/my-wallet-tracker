@@ -59,22 +59,25 @@ class AddTransactionFragment : DialogFragment() {
     private fun saveTransaction() {
         with(binding) {
             val amount = tietAmount.text.toString()
-            val category = spinnerCategory.selectedItem.toString()
+            val category = TransactionCategoryType.valueOf(spinnerCategory.selectedItem.toString())
             val description = tietDescription.text.toString()
 
-            if (amount.isNotEmpty() && category.isNotEmpty()) {
+            if (amount.isNotEmpty()) {
                 val transaction = TransactionDomain(
-                    transactionCategory = TransactionCategoryType.valueOf(category),
+                    transactionCategory = category,
                     transactionDescription = description,
-                    isIncome = true,
+                    isIncome = TransactionCategoryType.isIncome(category),
                     transactionAmount = amount.toDouble(),
                     transactionDate = Date(System.currentTimeMillis())
                 )
 
                 lifecycleScope.launch {
                     ServiceLocator.saveTransactionUseCase.execute(transaction)
-                    Snackbar.make(requireView(), "Success!", Snackbar.LENGTH_SHORT).show()
-                    dismiss() // Dismiss the dialog after successful transaction
+
+                    if (isAdded) {
+                        Snackbar.make(requireView(), "Success!", Snackbar.LENGTH_SHORT).show()
+                    }
+                    dismiss()
                 }
             } else {
                 Snackbar.make(requireView(), "Please fill all fields", Snackbar.LENGTH_SHORT).show()

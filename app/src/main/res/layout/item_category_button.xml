@@ -45,8 +45,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:text="$1000"
+        android:maxLines="1"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/ib_category"
         app:layout_constraintStart_toEndOf="@id/ib_category" />

@@ -11,14 +11,17 @@ import kotlinx.coroutines.launch
 import ru.kpfu.itis.android.asadullin.mywallet.R
 import ru.kpfu.itis.android.asadullin.mywallet.databinding.FragmentTransactionsBinding
 import ru.kpfu.itis.android.asadullin.mywallet.di.ServiceLocator
-import ru.kpfu.itis.android.asadullin.mywallet.domain.model.TransactionDomain
-import ru.kpfu.itis.android.asadullin.mywallet.domain.model.enums.TransactionCategoryType
+import ru.kpfu.itis.android.asadullin.mywallet.domain.model.Transaction
+import ru.kpfu.itis.android.asadullin.mywallet.domain.model.TransactionDate
+import ru.kpfu.itis.android.asadullin.mywallet.domain.model.TransactionModel
 import ru.kpfu.itis.android.asadullin.mywallet.presentation.adapters.TransactionAdapter
-import java.sql.Date
+import java.text.SimpleDateFormat
+import java.util.Locale
 
 class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
     private var _binding: FragmentTransactionsBinding? = null
     private val binding: FragmentTransactionsBinding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -37,12 +40,23 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
 
     private fun loadTransactions() {
         lifecycleScope.launch {
-            val transactionDomains = ServiceLocator.getAllTransactionsUseCase.execute()
+            val transactions = ServiceLocator.getAllTransactionsUseCase.execute()
+            val transactionDomains = mutableListOf<TransactionModel>()
+            var currentDate: String? = null
+
+            transactions.forEach { transaction ->
+                val dateFormat = SimpleDateFormat("dd.MM.yyyy", Locale.getDefault())
+                val transactionDate = dateFormat.format(transaction.transactionDate)
+                if (transactionDate != currentDate) {
+                    transactionDomains.add(TransactionDate(transactionDate))
+                    currentDate = transactionDate
+                }
+                transactionDomains.add(Transaction(transaction))
+            }
+
             binding.rvTransactions.adapter = TransactionAdapter(transactionDomains)
         }
     }
-
-
     override fun onDestroy() {
         super.onDestroy()
         _binding = null

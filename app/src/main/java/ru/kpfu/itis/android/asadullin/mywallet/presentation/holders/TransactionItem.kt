@@ -11,13 +11,20 @@ import java.util.Locale
 class TransactionItem(private val binding: ItemTransactionBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
-    private val dateFormat = SimpleDateFormat("dd.MM.yyyy, HH:mm", Locale.getDefault())
-
     fun onBind(transactionDomain: TransactionDomain) {
         with(binding) {
             tvTransactionCategory.text = transactionDomain.transactionCategory.toString()
-            tvTransactionAmount.text = transactionDomain.transactionAmount.toString()
-            tvTransactionDate.text = dateFormat.format(transactionDomain.transactionDate)
+            val formattedAmount = transactionDomain.transactionAmount.toString()
+            val trimmedAmount = if (formattedAmount.length > 8) {
+                formattedAmount.substring(0, 8) + "…"
+            } else {
+                formattedAmount
+            }
+            if (transactionDomain.isIncome) {
+                tvTransactionAmount.text = trimmedAmount
+            } else {
+                tvTransactionAmount.text = "—${trimmedAmount}"
+            }
             tvTransactionDescription.text = transactionDomain.transactionDescription.orEmpty()
             bgCategory.setBackgroundColor(Color.parseColor(TransactionCategoryType.getBackground(transactionDomain.transactionCategory)))
             ivCategoryImage.setImageResource(TransactionCategoryType.getDrawableId(transactionDomain.transactionCategory))
