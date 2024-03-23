@@ -82,6 +82,8 @@
         android:layout_width="170dp"
         android:layout_height="80dp"
         android:layout_margin="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/green_rectangle"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tv_from" />

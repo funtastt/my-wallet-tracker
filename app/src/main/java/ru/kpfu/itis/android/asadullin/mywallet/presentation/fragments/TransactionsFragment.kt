@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
+import kotlinx.coroutines.launch
 import ru.kpfu.itis.android.asadullin.mywallet.R
 import ru.kpfu.itis.android.asadullin.mywallet.databinding.FragmentTransactionsBinding
-import ru.kpfu.itis.android.asadullin.mywallet.domain.model.TransactionModel
+import ru.kpfu.itis.android.asadullin.mywallet.di.ServiceLocator
+import ru.kpfu.itis.android.asadullin.mywallet.domain.model.TransactionDomain
 import ru.kpfu.itis.android.asadullin.mywallet.domain.model.enums.TransactionCategoryType
 import ru.kpfu.itis.android.asadullin.mywallet.presentation.adapters.TransactionAdapter
 import java.sql.Date
@@ -25,26 +28,23 @@ class TransactionsFragment : Fragment(R.layout.fragment_transactions) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews()
+        loadTransactions()
     }
 
     private fun initViews() {
-        with(binding) {
-            val transactions: List<TransactionModel> = listOf(
-                TransactionModel(
-                    1,
-                    TransactionCategoryType.Food,
-                    "",
-                    true,
-                    1.00,
-                    Date(System.currentTimeMillis()),
-                    ""
-                ),
-            )
+        binding.rvTransactions.layoutManager = LinearLayoutManager(context)
+    }
 
-
-            rvTransactions.layoutManager = LinearLayoutManager(context)
-            rvTransactions.adapter = TransactionAdapter(transactions)
+    private fun loadTransactions() {
+        lifecycleScope.launch {
+            val transactionDomains = ServiceLocator.getAllTransactionsUseCase.execute()
+            binding.rvTransactions.adapter = TransactionAdapter(transactionDomains)
         }
     }
 
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 }
