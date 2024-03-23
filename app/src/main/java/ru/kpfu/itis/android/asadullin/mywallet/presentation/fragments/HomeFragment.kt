@@ -37,6 +37,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         expenseCategories.clear()
         incomeCategories.clear()
 
+        var expenseSum = 0.0
+        var incomeSum = 0.0
+
         lifecycleScope.launch {
             for (category in TransactionCategoryType.values()) {
                 val amount = ServiceLocator.calculateExpensesUseCase.execute(category.toString())
@@ -44,22 +47,26 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
                 if (isIncome) {
                     incomeCategories.add(CategoryDomain(amount, category, true))
+                    incomeSum += amount
                 } else {
                     expenseCategories.add(CategoryDomain(amount, category, false))
+                    expenseSum += amount
                 }
-
             }
 
             with(binding) {
                 rvCategories.layoutManager = GridLayoutManager(activity, 2)
-                rvCategories.adapter = CategoryAdapter(expenseCategories)
+                rvCategories.adapter = CategoryAdapter(expenseCategories, childFragmentManager)
 
                 bgHomeIncome.setOnClickListener {
-                    rvCategories.adapter = CategoryAdapter(incomeCategories)
+                    rvCategories.adapter = CategoryAdapter(incomeCategories, childFragmentManager)
                 }
                 bgHomeExpense.setOnClickListener {
-                    rvCategories.adapter = CategoryAdapter(expenseCategories)
+                    rvCategories.adapter = CategoryAdapter(expenseCategories, childFragmentManager)
                 }
+
+                tvIncomeAmount.text = incomeSum.toString()
+                tvExpenseAmount.text = expenseSum.toString()
             }
         }
     }

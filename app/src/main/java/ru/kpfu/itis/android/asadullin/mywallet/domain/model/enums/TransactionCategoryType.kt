@@ -12,9 +12,7 @@ enum class TransactionCategoryType(val drawableId: Int, val background: String, 
     Tech(R.drawable.tech, "#292929", false),
     Health(R.drawable.health, "#bbc435", false),
     Job(R.drawable.job, "#0e8d85", true),
-    Passive(R.drawable.passive_income, "#6673c1", true),
-    OtherIncome(R.drawable.other, "#35c6d7", true),
-    OtherExpense(R.drawable.other, "#218fe8", false);
+    Passive(R.drawable.passive_income, "#6673c1", true);
 
     companion object {
         fun getDrawableId(category: TransactionCategoryType) = category.drawableId

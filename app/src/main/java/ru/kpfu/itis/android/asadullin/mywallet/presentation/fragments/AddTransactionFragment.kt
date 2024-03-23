@@ -1,11 +1,11 @@
 package ru.kpfu.itis.android.asadullin.mywallet.presentation.fragments
 
+import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ArrayAdapter
-import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AlertDialog
+import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.coroutines.launch
@@ -16,22 +16,19 @@ import ru.kpfu.itis.android.asadullin.mywallet.domain.model.TransactionDomain
 import ru.kpfu.itis.android.asadullin.mywallet.domain.model.enums.TransactionCategoryType
 import java.sql.Date
 
-class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
+class AddTransactionFragment : DialogFragment() {
     private var _binding: FragmentAddTransactionBinding? = null
-    private val binding: FragmentAddTransactionBinding get() = _binding!!
+    private val binding get() = _binding!!
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentAddTransactionBinding.inflate(inflater)
-        return binding.root
-    }
+    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
+        _binding = FragmentAddTransactionBinding.inflate(LayoutInflater.from(context))
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         initViews()
         initListeners()
+
+        return AlertDialog.Builder(requireContext())
+            .setView(binding.root)
+            .create()
     }
 
     private fun initViews() {
@@ -40,6 +37,14 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
             val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, categories)
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spinnerCategory.adapter = adapter
+
+            arguments?.let { bundle ->
+                val category = bundle.getString("category")
+                val categoryIndex = adapter.getPosition(category)
+                if (categoryIndex >= 0) {
+                    spinnerCategory.setSelection(categoryIndex)
+                }
+            }
         }
     }
 
@@ -61,14 +66,15 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
                 val transaction = TransactionDomain(
                     transactionCategory = TransactionCategoryType.valueOf(category),
                     transactionDescription = description,
-                    isIncome = true, // Примерное значение, вам нужно будет определить, является ли транзакция доходом или расходом
+                    isIncome = true,
                     transactionAmount = amount.toDouble(),
-                    transactionDate = Date(System.currentTimeMillis()) // Текущая дата
+                    transactionDate = Date(System.currentTimeMillis())
                 )
 
                 lifecycleScope.launch {
                     ServiceLocator.saveTransactionUseCase.execute(transaction)
-                    Snackbar.make(requireView(), "Sucksess!", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(requireView(), "Success!", Snackbar.LENGTH_SHORT).show()
+                    dismiss() // Dismiss the dialog after successful transaction
                 }
             } else {
                 Snackbar.make(requireView(), "Please fill all fields", Snackbar.LENGTH_SHORT).show()
@@ -76,8 +82,8 @@ class AddTransactionFragment : Fragment(R.layout.fragment_add_transaction) {
         }
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
+    override fun onDestroyView() {
+        super.onDestroyView()
         _binding = null
     }
 }
